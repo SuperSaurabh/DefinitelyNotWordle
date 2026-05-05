@@ -2,7 +2,7 @@ import { getOfficialWord } from "./_dailyWord.js";
 
 export async function POST(request: Request) {
     const body = await request.json();
-    const userWord = body.word;
+    const userWord: string = body.word;
 
     const dictRes = await fetch(
         `https://api.dictionaryapi.dev/api/v2/entries/en/${userWord}`,
@@ -14,5 +14,13 @@ export async function POST(request: Request) {
     const officialWord = await getOfficialWord();
     const correct = userWord === officialWord.toLowerCase();
 
-    return Response.json({ valid: true, correct });
+    const result: number[] = []; // 2 is corrent, 1 is wrong place, 0 is wrong
+
+    [...userWord].forEach((letter, i) => {
+        if (officialWord[i] == letter) result.push(2);
+        else if (officialWord.slice(i).includes(letter)) result.push(1);
+        else result.push(0);
+    });
+
+    return Response.json({ valid: true, correct, result: result });
 }
