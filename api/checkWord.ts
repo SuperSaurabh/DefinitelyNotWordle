@@ -1,4 +1,4 @@
-import { getOfficialWord } from "./_dailyWord";
+import { getOfficialWord } from "./_dailyWord.js";
 
 export async function POST(request: Request) {
     const body = await request.json();
