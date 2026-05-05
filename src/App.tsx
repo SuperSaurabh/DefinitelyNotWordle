@@ -79,7 +79,7 @@ function App() {
 
     return (
         <div className="container">
-            <h1>Wordle</h1>
+            <h1>Definitely Not Wordle</h1>
             <div className="message-bar">{message}</div>
             <div className="board">
                 {rows.map((row, i) => (
