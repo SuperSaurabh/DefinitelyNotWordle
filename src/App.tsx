@@ -39,7 +39,7 @@ function App() {
         }
 
         try {
-            const res = await fetch("/api/check-word", {
+            const res = await fetch("/api/checkWord", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ word: current }),
